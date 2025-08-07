@@ -5,7 +5,10 @@ import RegisterPage from './pages/register';
 import DashboardPage from './pages/dashboard';
 import DataPage from './pages/data';
 import FormPage from './pages/form';
-import HomePage from './pages/home';
+import WeatherPage from './pages/weather';
+import DynamicPage from './pages/dynamicPage';
+import DragDropTasks from './pages/DragDropTasks';
+
 function App() {
   return (
     <Router>
@@ -16,7 +19,10 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/data" element={<DataPage />} />
         <Route path="/form" element={<FormPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/weather" element={<WeatherPage />} />
+        <Route path="/dynamicPage" element={<DynamicPage />} />
+        <Route path="/DragDropTasks" element={<DragDropTasks />} />
+      
       </Routes>
     </Router>
   );

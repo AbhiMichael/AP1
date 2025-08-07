@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputAdornment from '@mui/material/InputAdornment';
 import {
   Box,
   Typography,
@@ -86,19 +87,28 @@ export default function Dashboard() {
           mb: 3,
           gap: 2
         }}>
-          <TextField
-            placeholder="Search..."
-            size="small"
-            variant="outlined"
-            InputProps={{
-              startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
-              sx: { borderRadius: 3 }
-            }}
-            sx={{ 
-              flex: 1,
-              maxWidth: isSmallScreen ? '100%' : 290
-            }}
-          />
+          
+
+<TextField
+  placeholder="Search..."
+  size="small"
+  variant="outlined"
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+        <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />
+      </InputAdornment>
+    ),
+  }}
+  sx={{
+    flex: 1,
+    maxWidth: isSmallScreen ? '100%' : 290,
+    '& .MuiOutlinedInput-root': {
+      borderRadius: 3,
+    },
+  }}
+/>
+
           <IconButton>
             <CalendarTodayIcon sx={{ color: 'black' }} />
           </IconButton>
