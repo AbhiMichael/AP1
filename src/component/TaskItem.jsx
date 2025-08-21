@@ -29,7 +29,7 @@ const TaskItem = ({ id, content }) => {
       elevation={isDragging ? 6 : 2}
       sx={{
         p: 2,
-        backgroundColor: isDragging ? '#bbdefb' : '#fff',
+        background: `linear-gradient(180deg, #bbe3f1ff ,#fff)`,
         ...style,
       }}
     >

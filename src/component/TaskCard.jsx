@@ -19,7 +19,7 @@ const TaskCard = ({ title, children }) => {
         </Typography>
         <Box
           sx={{
-            backgroundColor: '#f9f9f9',
+            backgroundColor: 'beige',
             borderRadius: 2,
             padding: 2,
             minHeight: 300,

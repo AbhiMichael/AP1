@@ -8,6 +8,12 @@ import FormPage from './pages/form';
 import WeatherPage from './pages/weather';
 import DynamicPage from './pages/dynamicPage';
 import DragDropTasks from './pages/DragDropTasks';
+import ProductlistPage from './pages/productlist';
+import CartSystemPage from './pages/CartSystem';
+import PurchasedPage from './pages/Purchased';
+import StepperPage from "./pages/StepperPage";
+import LocationForm from "./pages/LocationForm";
+import Taskboard from "./pages/Taskboard";
 
 function App() {
   return (
@@ -22,7 +28,13 @@ function App() {
         <Route path="/weather" element={<WeatherPage />} />
         <Route path="/dynamicPage" element={<DynamicPage />} />
         <Route path="/DragDropTasks" element={<DragDropTasks />} />
-      
+        <Route path="/productlist" element={<ProductlistPage />} />
+        <Route path="/cart" element={<CartSystemPage />} />
+        <Route path="/Purchased" element={<PurchasedPage />} />
+        <Route path="/StepperPage" element={<StepperPage />} />
+        <Route path="/location" element={<LocationForm />} />
+        <Route path="/Taskboard" element={<Taskboard />} />
+        
       </Routes>
     </Router>
   );

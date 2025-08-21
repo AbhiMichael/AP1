@@ -36,6 +36,12 @@ const validationSchema = Yup.object({
 
 export default function FormikMUIForm() {
   const [open, setOpen] = useState(false);
+   const backgroundPattern = `
+      radial-gradient(circle at 20px 20px, rgba(1, 21, 38, 0.15) 2px, transparent 2px),
+      radial-gradient(circle at 60px 60px, rgba(3, 22, 42, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 100px 40px, rgba(3, 26, 45, 0.1) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 150px 80px, rgba(3, 24, 45, 0.15) 2px, transparent 2px)
+    `;
   const [formPreview, setFormPreview] = useState(null);
   const [fileNames, setFileNames] = useState([]);
   const [filePreviews, setFilePreviews] = useState([]);
@@ -114,7 +120,14 @@ export default function FormikMUIForm() {
   };
 
   return (
-    <Box sx={{ display: 'flex', width: '100vw', flexDirection: 'row',background: 'linear-gradient(to right, #e3f2fd, #fce4ec)', }}>
+    <Box sx={{ display: "flex",
+          height: "100vh",
+          width: "100vw",
+          backgroundColor: "#d5eef8ff",
+          backgroundImage: backgroundPattern,
+          backgroundSize: "120px 120px",
+          overflow: "hidden",
+          position: "relative", }}>
       <Box sx={{
         width: { xs: '100%', sm: '40px' },
         display: { xs: isMobile ? 'none' : 'block', sm: 'block' },

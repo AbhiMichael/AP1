@@ -83,14 +83,14 @@ const TaskBoard = ({ columns, setColumns }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        background: 'linear-gradient(to right, #e3f2fd, #fce4ec)',
+        background: `linear-gradient(180deg, #bbe3f1ff ,#fff)`,
         overflowY: 'auto',
         p: 4,
       }}
     >
       <Container maxWidth="md">
         <Box textAlign="center" mb={5}>
-          <Typography variant="h4" fontWeight={700} color="primary" gutterBottom>
+          <Typography variant="h4" fontWeight={700} >
             Task Organizer
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">

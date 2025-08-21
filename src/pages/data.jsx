@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Box, Table, TableBody, TableCell, TableContainer, TableHead,
   TablePagination, TableRow, TableSortLabel, Paper, Checkbox,
-  IconButton, Tooltip
+  IconButton, Tooltip, Typography
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,7 +14,6 @@ import Sidebar from '../component/Sidebar';
 import EnhancedTableToolbar from '../component/EnhancedTableToolbar';
 import EditDialog from '../component/EditDialog';
 import DeleteConfirmDialog from '../component/DeleteConfirmDialog';
-
 
 const createData = (id, name, designation, role, department, phone) => ({ id, name, designation, role, department, phone });
 
@@ -67,11 +66,11 @@ function EnhancedTableHead({ order, orderBy, numSelected, rowCount, onSelectAllC
   const createSortHandler = (property) => (event) => onRequestSort(event, property);
 
   return (
-    <TableHead>
+    <TableHead sx={{ background: 'linear-gradient(90deg, #519ae3ff, #42a5f5)' }}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            color="primary"
+            sx={{ color: 'white' }}
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
@@ -81,11 +80,21 @@ function EnhancedTableHead({ order, orderBy, numSelected, rowCount, onSelectAllC
           <TableCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{
+              color: 'white',
+              fontWeight: 600,
+              letterSpacing: 0.5,
+              fontSize: '0.95rem'
+            }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{
+                '& .MuiTableSortLabel-icon': { color: 'white' },
+                color: 'white'
+              }}
             >
               {headCell.label}
               {orderBy === headCell.id && (
@@ -169,9 +178,22 @@ export default function EnhancedTable() {
   const visibleRows = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Box sx={{ display: 'flex', width: '100vw', height: '100vh' }}>
+    <Box sx={{ display: 'flex', width: '100vw', height: '100vh', backgroundColor: '#f4f6f8' }}>
       <Sidebar />
-      <Paper sx={{ width: '100%',background: 'linear-gradient(to right, #e3f2fd, #fce4ec)' }}>
+      <Paper
+        sx={{
+          width: '100%',
+          mx: 2,
+          my: 3,
+          borderRadius: 3,
+          boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          background: 'linear-gradient(180deg,#ffffff,#e3f2fd)'
+        }}
+      >
+        {/* Toolbar */}
         <EnhancedTableToolbar
           numSelected={selected.length}
           filterText={filterText}
@@ -181,6 +203,7 @@ export default function EnhancedTable() {
           onDepartmentFilterChange={(e) => setDepartmentFilter(e.target.value)}
         />
 
+        {/* Table */}
         <TableContainer>
           <Table>
             <EnhancedTableHead
@@ -200,11 +223,18 @@ export default function EnhancedTable() {
                     key={row.id}
                     selected={isSelected}
                     onClick={(e) => handleRowClick(e, row.id)}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': { backgroundColor: '#f1f9ff' },
+                      '&.Mui-selected': {
+                        backgroundColor: '#e3f2fd !important'
+                      }
+                    }}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox checked={isSelected} />
                     </TableCell>
-                    <TableCell>{row.id}</TableCell>
+                    <TableCell><Typography fontWeight={600}>{row.id}</Typography></TableCell>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.designation}</TableCell>
                     <TableCell>{row.role}</TableCell>
@@ -213,7 +243,7 @@ export default function EnhancedTable() {
                     <TableCell>
                       <Tooltip title="Edit">
                         <IconButton onClick={(e) => { e.stopPropagation(); handleEdit(row); }}>
-                          <EditIcon />
+                          <EditIcon color="primary" />
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Delete">
@@ -233,6 +263,7 @@ export default function EnhancedTable() {
           </Table>
         </TableContainer>
 
+        {/* Pagination */}
         <TablePagination
           component="div"
           count={filteredRows.length}
@@ -244,9 +275,14 @@ export default function EnhancedTable() {
             setPage(0);
           }}
           rowsPerPageOptions={[5, 10, 25]}
+          sx={{
+            borderTop: '1px solid #ddd',
+            backgroundColor: '#fafafa'
+          }}
         />
       </Paper>
 
+      {/* Edit Dialog */}
       <EditDialog
         open={editOpen}
         onClose={() => setEditOpen(false)}
@@ -254,6 +290,7 @@ export default function EnhancedTable() {
         user={editRow}
       />
 
+      {/* Delete Confirm */}
       <DeleteConfirmDialog
         open={confirmDeleteOpen}
         onClose={() => setConfirmDeleteOpen(false)}
